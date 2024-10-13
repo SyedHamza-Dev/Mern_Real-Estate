@@ -1,5 +1,5 @@
 import { FaSearch, FaBars } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
@@ -8,6 +8,7 @@ export default function Header() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false); // State for mobile menu
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,13 +26,17 @@ export default function Header() {
     }
   }, [location.search]);
 
+  // Function to close the mobile menu when a link is clicked
+  const handleLinkClick = () => {
+    setIsOpen(false);
+  };
+
   return (
     <header className='bg-white shadow-md border-b border-gray-200'>
-      <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
+      <div className='flex justify-between items-center max-w-6xl mx-auto p-4'>
         {/* Logo */}
         <Link to='/' className='no-underline'>
-        <h1 className='text-gray-800 font-semibold text-2xl sm:text-3xl lg:text-4xl'>
-
+          <h1 className='text-gray-800 font-bold text-2xl sm:text-3xl lg:text-4xl'>
             <span className='text-black'>REH</span>
             <span className='text-green-500'>AI</span>
             <span className='text-black'>SH</span>
@@ -69,15 +74,15 @@ export default function Header() {
         <ul
           className={`${
             isOpen ? 'block' : 'hidden'
-          } md:flex items-center gap-4 bg-white absolute md:static top-16 left-0 w-full md:w-auto p-4 md:p-0 border-b md:border-none z-10`}
+          } md:flex items-center gap-6 bg-white absolute md:static top-16 left-0 w-full md:w-auto p-4 md:p-0 border-b md:border-none z-10`}
         >
-          <Link to='/' className='no-underline'>
-            <li className='text-gray-800 text-lg font-semibold'>Home</li>
+          <Link to='/' className='no-underline' onClick={handleLinkClick}>
+            <li className='text-gray-800 text-lg font-semibold hover:text-green-500 transition-colors'>Home</li>
           </Link>
-          <Link to='/about' className='no-underline'>
-            <li className='text-gray-800 text-lg font-semibold'>About</li>
+          <Link to='/about' className='no-underline' onClick={handleLinkClick}>
+            <li className='text-gray-800 text-lg font-semibold hover:text-green-500 transition-colors'>About</li>
           </Link>
-          <Link to='/profile' className='flex items-center no-underline'>
+          <Link to='/profile' className='flex items-center no-underline' onClick={handleLinkClick}>
             {currentUser ? (
               <img
                 className='rounded-full h-10 w-10 object-cover border-2 border-gray-200'
@@ -89,7 +94,7 @@ export default function Header() {
                 }}
               />
             ) : (
-              <li className='text-gray-800 text-lg font-semibold'>Sign In</li>
+              <li className='text-gray-800 text-lg font-semibold hover:text-green-500 transition-colors'>Sign In</li>
             )}
           </Link>
         </ul>
