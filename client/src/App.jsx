@@ -17,6 +17,22 @@ import 'animate.css/animate.min.css';
 import Footer from './components/Footer';
 
 export default function App() {
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <BrowserRouter>
       <Header />

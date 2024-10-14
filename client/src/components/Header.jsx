@@ -2,6 +2,7 @@ import { FaSearch, FaBars } from 'react-icons/fa';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import logo from "../assets/images/tlf.png";
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
@@ -32,15 +33,11 @@ export default function Header() {
   };
 
   return (
-    <header className='bg-white shadow-md border-b border-gray-200'>
-      <div className='flex justify-between items-center max-w-6xl mx-auto p-4'>
-        {/* Logo */}
+    <header className='bg-white shadow-md border-b border-gray-200 '>
+      <div className='flex justify-between items-center max-w-6xl mx-auto p-2 md:p-2'>
+              
         <Link to='/' className='no-underline'>
-          <h1 className='text-gray-800 font-bold text-2xl sm:text-3xl lg:text-4xl'>
-            <span className='text-black'>REH</span>
-            <span className='text-green-500'>AI</span>
-            <span className='text-black'>SH</span>
-          </h1>
+        <img src={logo} alt="" className= 'ml-14' />
         </Link>
 
         {/* Hamburger Icon for Mobile */}
